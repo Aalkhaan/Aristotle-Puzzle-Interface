@@ -1,4 +1,5 @@
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Row {
     private final int length;
@@ -7,10 +8,9 @@ public class Row {
     public Row(int length) {
         this.length = length;
         slots = new Slot[length];
-        Arrays.fill(slots, null);
     }
 
-    public int lacks() {
+    public int lack() {
         int lack = 38;
         for (Slot slot : slots) lack -= slot.getNumber();
         return lack;
@@ -40,9 +40,9 @@ public class Row {
         slots[index] = slot;
     }
 
-    public int emptySlots() {
-        int n = 0;
-        for (Slot slot : slots) if (slot.isEmpty()) n += 1;
-        return n;
+    public List<Slot> emptySlots() {
+        List<Slot> emptySlots = new LinkedList<>();
+        for (Slot slot : slots) if (slot.isEmpty()) emptySlots.add(slot);
+        return emptySlots;
     }
 }

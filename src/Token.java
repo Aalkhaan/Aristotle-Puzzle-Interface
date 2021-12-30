@@ -25,4 +25,9 @@ public class Token implements Comparable<Token>{
     public int compareTo(Token token) {
         return Integer.compare(number, token.getNumber());
     }
+
+    @Override
+    public String toString() {
+        return "Token " + number;
+    }
 }

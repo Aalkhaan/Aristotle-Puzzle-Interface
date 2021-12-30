@@ -25,4 +25,10 @@ public class Slot {
     public boolean isEmpty() {
         return token == null;
     }
+
+    @Override
+    public String toString() {
+        if (isEmpty()) return "__";
+        return String.valueOf(token.getNumber());
+    }
 }
