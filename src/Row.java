@@ -39,4 +39,10 @@ public class Row {
         if (index < 0 || index >= slots.length) throw new IndexOutOfBoundsException();
         slots[index] = slot;
     }
+
+    public int emptySlots() {
+        int n = 0;
+        for (Slot slot : slots) if (slot.isEmpty()) n += 1;
+        return n;
+    }
 }

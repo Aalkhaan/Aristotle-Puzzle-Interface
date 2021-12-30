@@ -77,7 +77,7 @@ public class Board {
     private boolean completable(Row row) {
         int lack = row.lacks();
         if (lack < 0) return false;
-        List<Set<Token>> tokenSubsets = getSubsets(unplaced.stream().toList(), 2);
+        List<Set<Token>> tokenSubsets = getSubsets(unplaced.stream().toList(), row.emptySlots());
         for (Set<Token> tokens : tokenSubsets) {
             int sum = 0;
             for (Token token : tokens) sum += token.getNumber();
@@ -116,7 +116,7 @@ public class Board {
 
     public static List<Set<Token>> getSubsets(List<Token> superSet, int k) {
         List<Set<Token>> res = new ArrayList<>();
-        getSubsets(superSet, k, 0, new HashSet<Token>(), res);
+        getSubsets(superSet, k, 0, new HashSet<>(), res);
         return res;
     }
 
@@ -129,5 +129,7 @@ public class Board {
         else if (index <= 11) rows[2].placeToken(token, index - 7);
         else if (index <= 15) rows[3].placeToken(token, index - 11);
         else rows[4].placeToken(token, index - 16);
+        unplaced.remove(token);
+        placed.add(token);
     }
 }
